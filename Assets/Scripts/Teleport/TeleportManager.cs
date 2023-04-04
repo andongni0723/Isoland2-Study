@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,18 @@ using UnityEngine.Serialization;
 
 public class TeleportManager : Singleton<TeleportManager>
 {
+    [SceneName] public string FirstStartScene;
+    
     public CanvasGroup fadeCanvasGroup;
     public float fadeDuration;
     
     private bool isFade = false;
+
+    private void Start()
+    {
+        Transition(String.Empty, FirstStartScene);
+    }
+
     public void Transition(string from, string to)
     {
         if(!isFade)
@@ -23,12 +32,20 @@ public class TeleportManager : Singleton<TeleportManager>
         // Fade In
         yield return Fade(1);
         
+        // UnLoad Scene
+        if (from != String.Empty)
+        {
+            EventHandler.CallBeforeSceneUnload();
+            yield return SceneManager.UnloadSceneAsync(from);
+        }
+        
         // Load Scene
-        yield return SceneManager.UnloadSceneAsync(from);
         yield return SceneManager.LoadSceneAsync(to, LoadSceneMode.Additive);
 
         // Set new Scent to Active
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(to));
+        
+        EventHandler.CallAfterSceneLoad();
         
         // Fade Out
         yield return Fade(0);

@@ -6,13 +6,14 @@ using UnityEngine.Serialization;
 public class InventoryManager : Singleton<InventoryManager>
 {
     public ItemDataList_SO itemDataList;
-    [SerializeField] private List<ItemName> Bag = new List<ItemName>(); // Bag
+    [SerializeField] public List<ItemName> Bag = new List<ItemName>(); // Bag
 
-    protected override void Awake()
-    {
-        base.Awake();
-        EventHandler.CallReloadSlotDisplay(-1);
-    }
+    //protected override void Awake()
+    //{
+    //    base.Awake();
+    //    //FIXME:
+    //    EventHandler.CallReloadSlotDisplay(-1);
+    //}
 
     public void AddItem(ItemName item)
     {

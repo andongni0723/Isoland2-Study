@@ -5,14 +5,40 @@ using UnityEngine;
 
 public class CursorManager : MonoBehaviour
 {
+    public GameObject hand;
+    
     private Vector3 mouseWorldPosition => Camera.main.ScreenToWorldPoint(Input.mousePosition);
     private bool canClick;
 
+    #region Event
+
+    private void OnEnable()
+    {
+        EventHandler.ItemSelected += OnItemSelected; // Set hand active
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.ItemSelected -= OnItemSelected;
+    }
+
+    private void OnItemSelected(ItemDetails itemDetails, bool isSelected)
+    {
+        hand.SetActive(isSelected);
+    }
+
+    #endregion
 
     private void Update()
     {
         canClick = GetObjectOfMousePosition();
         
+        // Hand cursor position
+        if (hand.activeInHierarchy)
+        {
+            hand.transform.position = Input.mousePosition;
+        }
+
         // Pointer Click
         if (canClick && Input.GetMouseButtonDown(0))
         {
