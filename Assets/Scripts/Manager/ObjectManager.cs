@@ -7,6 +7,7 @@ using UnityEngine;
 public class ObjectManager : MonoBehaviour
 {
     public Dictionary<ItemName, bool> AllSceneItemStateDict = new Dictionary<ItemName, bool>();
+    public Dictionary<string, bool> AllSceneInteractiveStateDict = new Dictionary<string, bool>();
 
     #region Event
 
@@ -29,9 +30,18 @@ public class ObjectManager : MonoBehaviour
         // Save New Item
         foreach (Item item in FindObjectsOfType<Item>())
         {
-            if (!AllSceneItemStateDict.ContainsKey(item.itemName))
+            AllSceneItemStateDict.TryAdd(item.itemName, true);
+        }
+
+        foreach (Interactive item in FindObjectsOfType<Interactive>())
+        {
+            if (AllSceneInteractiveStateDict.ContainsKey(item.name))
             {
-                AllSceneItemStateDict.Add(item.itemName, true);
+                AllSceneInteractiveStateDict[item.name] = item.isCorrect;
+            }
+            else
+            {
+                AllSceneInteractiveStateDict.TryAdd(item.gameObject.name, item.isCorrect);
             }
         }
     }
@@ -41,19 +51,32 @@ public class ObjectManager : MonoBehaviour
         // Load Item State and Save New Item
         foreach (Item item in FindObjectsOfType<Item>())
         {
-            if (AllSceneItemStateDict.ContainsKey(item.itemName))
+            if (AllSceneItemStateDict.TryGetValue(item.itemName, out var value))
             {
-                item.gameObject.SetActive(AllSceneItemStateDict[item.itemName]);
+                item.gameObject.SetActive(value);
             }
             else
             {
                 AllSceneItemStateDict.Add(item.itemName, true);
             }
         }
+        
+        // Load Interactive object State and Save New Item
+        foreach (Interactive item in FindObjectsOfType<Interactive>())
+        {
+            if (AllSceneInteractiveStateDict.TryGetValue(item.gameObject.name, out var value))
+            {
+                Debug.Log("load");
+                item.isCorrect = value;
+            }
+        }
     }
     
     private void OnAfterReloadSlotDisplay(int index)
     {
+        if(index == -1) return;
+        
+        
         // Update Item State
         AllSceneItemStateDict[InventoryManager.Instance.Bag[index]] = false;
     }

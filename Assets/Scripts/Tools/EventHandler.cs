@@ -3,10 +3,10 @@ using UnityEngine;
 
 public static class EventHandler
 {
-    public static event Action<int> ReloadSlotDisplay;
-    public static void CallReloadSlotDisplay(int index)
+    public static event Action<ItemDetails, int> ReloadSlotDisplay;
+    public static void CallReloadSlotDisplay(ItemDetails itemDetails, int index)
     {
-        ReloadSlotDisplay?.Invoke(index);
+        ReloadSlotDisplay?.Invoke(itemDetails, index);
         
         CallAfterReloadSlotDisplay(index);
     }
@@ -34,5 +34,11 @@ public static class EventHandler
     public static void CallItemSelected(ItemDetails itemDetails, bool isSelected)
     {
         ItemSelected?.Invoke(itemDetails, isSelected);
+    }
+
+    public static event Action<ItemName> UseItem;
+    public static void CallUseItem(ItemName itemName)
+    {
+        UseItem?.Invoke(itemName);
     }
 }

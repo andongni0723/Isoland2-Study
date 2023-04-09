@@ -15,16 +15,22 @@ public class CursorManager : MonoBehaviour
     private void OnEnable()
     {
         EventHandler.ItemSelected += OnItemSelected; // Set hand active
+        EventHandler.UseItem += OnUseItem; // Set hand active
     }
-
     private void OnDisable()
     {
         EventHandler.ItemSelected -= OnItemSelected;
+        EventHandler.UseItem -= OnUseItem;
     }
 
     private void OnItemSelected(ItemDetails itemDetails, bool isSelected)
     {
         hand.SetActive(isSelected);
+    }
+    
+    private void OnUseItem(ItemName obj)
+    {
+        hand.gameObject.SetActive(false);
     }
 
     #endregion
@@ -50,8 +56,11 @@ public class CursorManager : MonoBehaviour
     private void ClickAction(GameObject target)
     {
         // Call the interface
-        ICursorClick iCursorClick = target.GetComponent<ICursorClick>();
-        iCursorClick?.ICursorClick();
+        if (target != null)
+        {
+            ICursorClick iCursorClick = target.GetComponent<ICursorClick>();
+            iCursorClick?.ICursorClick();
+        }
     }
 
     /// <summary>

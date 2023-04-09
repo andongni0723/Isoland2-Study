@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,28 @@ public class InventoryManager : Singleton<InventoryManager>
     //    EventHandler.CallReloadSlotDisplay(-1);
     //}
 
+    #region Event
+
+    private void OnEnable()
+    {
+        EventHandler.UseItem += OnUseItem;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.UseItem -= OnUseItem;
+    }
+
+    private void OnUseItem(ItemName itemName)
+    {
+        Bag.Remove(itemName);
+        
+        if(Bag.Count == 0)
+            EventHandler.CallReloadSlotDisplay(null ,-1);
+    }
+
+    #endregion
+
     public void AddItem(ItemName item)
     {
         // Check not have this item and add to bag
@@ -23,7 +46,7 @@ public class InventoryManager : Singleton<InventoryManager>
             Bag.Add(item);
             
             // UI display the last(new) item
-            EventHandler.CallReloadSlotDisplay(Bag.Count - 1);
+            EventHandler.CallReloadSlotDisplay(itemDataList.FindItemDetails(item), Bag.Count - 1);
         }
     }
 }

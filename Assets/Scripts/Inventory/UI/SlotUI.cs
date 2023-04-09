@@ -11,9 +11,9 @@ public class SlotUI : Singleton<SlotUI>, IPointerClickHandler, IPointerEnterHand
     public ItemTooltip ItemTooltip;
     [SerializeField] private bool isSelected;
 
-    public void DisplayItem(int index)
+    public void DisplayItem(ItemDetails itemDetails, int index)
     {
-        currentItem = InventoryManager.Instance.itemDataList.itemDetailsList[index];
+        currentItem = itemDetails;
         gameObject.SetActive(true);
 
         // Display
@@ -26,6 +26,7 @@ public class SlotUI : Singleton<SlotUI>, IPointerClickHandler, IPointerEnterHand
         gameObject.SetActive(false);
         itemIcon.sprite = null;
         currentItem = null;
+        isSelected = false;
     }
 
     public ItemDetails GetSelectedItem()

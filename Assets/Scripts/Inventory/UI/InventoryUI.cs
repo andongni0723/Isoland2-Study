@@ -27,7 +27,7 @@ public class InventoryUI : MonoBehaviour
         EventHandler.ReloadSlotDisplay -= OnReloadSlotDisplay;
     }
 
-    private void OnReloadSlotDisplay(int index)
+    private void OnReloadSlotDisplay(ItemDetails itemDetails, int index)
     {
         if (index == -1)
         {
@@ -38,7 +38,7 @@ public class InventoryUI : MonoBehaviour
         }
         else
         {
-            slotUI.DisplayItem(index);
+            slotUI.DisplayItem(itemDetails, index);
             currentIndex = index;
         }
     }

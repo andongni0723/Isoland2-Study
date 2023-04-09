@@ -18,14 +18,20 @@ public class Interactive : MonoBehaviour, ICursorClick
         if (itemName == correctItem)
         {
             CorrectClick();
+            EventHandler.CallUseItem(itemName);
+            //Debug.Log("Yes Click !!!!!");
         }
         else
         {
             CommonClick();
-            Debug.Log("Empty Click");
+            //Debug.Log("Empty Click");
         }
     }
 
-    protected virtual void CommonClick() {}
-    protected virtual void CorrectClick() {}
+    protected virtual void CommonClick() { }
+
+    protected virtual void CorrectClick()
+    {
+        isCorrect = true;
+    }
 }
