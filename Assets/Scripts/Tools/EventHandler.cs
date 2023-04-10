@@ -41,4 +41,10 @@ public static class EventHandler
     {
         UseItem?.Invoke(itemName);
     }
+    
+    public static event Action<int> BagChangeItem;
+    public static void CallBagChangeItem(int index)
+    {
+        BagChangeItem?.Invoke(index);
+    }
 }
