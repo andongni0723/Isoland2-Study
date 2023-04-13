@@ -58,8 +58,10 @@ public class CursorManager : MonoBehaviour
         // Call the interface
         if (target != null)
         {
-            ICursorClick iCursorClick = target.GetComponent<ICursorClick>();
-            iCursorClick?.ICursorClick();
+            foreach (ICursorClick scripts in target.GetComponents<ICursorClick>())
+            {
+                scripts?.ICursorClick();
+            }
         }
     }
 

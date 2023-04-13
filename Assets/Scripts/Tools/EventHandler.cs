@@ -47,4 +47,16 @@ public static class EventHandler
     {
         BagChangeItem?.Invoke(index);
     }
+
+    public static event Action<string, GameObject> DialoguePlay;
+    public static void CallDialoguePlay(string dialogue, GameObject dialogueUIPoint)
+    {
+        DialoguePlay?.Invoke(dialogue, dialogueUIPoint);
+    }
+
+    public static event Action DialogueDone;
+    public static void CallDialogueDone()
+    {
+        DialogueDone?.Invoke();
+    }
 }
