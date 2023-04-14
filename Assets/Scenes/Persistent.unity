@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 163250675}
   m_Layer: 0
-  m_Name: '#08 00:00'
+  m_Name: '#08 12:13'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1222,7 +1222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f275c80a58f5437683f3ab1c83a4452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDisplayName: {fileID: 0}
+  itemDisplayName: {fileID: 1658111856}
 --- !u!1 &1625936233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1583,7 +1583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 979694320}
-  text: {fileID: 0}
+  text: {fileID: 547604993}
 --- !u!1 &1865082443
 GameObject:
   m_ObjectHideFlags: 0

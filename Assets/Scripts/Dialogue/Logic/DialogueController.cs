@@ -20,12 +20,12 @@ public class DialogueController : MonoBehaviour, ICursorClick
 
     public void PlayCommonDialogue()
     {
-        StartCoroutine(PlayDialogue(commonDialogueData.DialogueList));
+        StartCoroutine(PlayDialogue(commonDialogueData.data.DialogueList));
     }
 
     public void PlayCorrectDialogue()
     {
-        StartCoroutine(PlayDialogue(correctDialogueData.DialogueList));
+        StartCoroutine(PlayDialogue(correctDialogueData.data.DialogueList));
     }
 
     public void ICursorClick()
@@ -46,7 +46,7 @@ public class DialogueController : MonoBehaviour, ICursorClick
         {
             isNext = false;
 
-            EventHandler.CallDialoguePlay(commonDialogueData.DialogueList[i], dialogueUIPoint);
+            EventHandler.CallDialoguePlay(dialogueList[i], dialogueUIPoint);
             
             // Wait until player click the character
             yield return new WaitUntil(() => isNext);

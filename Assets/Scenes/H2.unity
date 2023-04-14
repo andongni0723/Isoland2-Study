@@ -638,9 +638,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e07bbac5a714822ad891f08e93a6dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commonDialogueData: {fileID: 11400000, guid: ea64c2d4ba3f449d08f509c25def4a62, type: 2}
-  correctDialogueData: {fileID: 11400000, guid: e4656d5e90bff423cbb2ed81a65b4f8a, type: 2}
+  commonDialogueData: {fileID: 11400000, guid: 70fdbffb6e5a64154b1827f3262af9eb, type: 2}
+  correctDialogueData: {fileID: 11400000, guid: 1e60af41e232a431e8559b6c6e4c731c, type: 2}
   dialogueUIPoint: {fileID: 897790726}
+  isTalk: 0
 --- !u!1001 &7546783011405929970
 PrefabInstance:
   m_ObjectHideFlags: 0

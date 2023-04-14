@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 using UnityEngine.EventSystems;
@@ -10,7 +11,7 @@ using UnityEngine.UIElements;
 public class DialogueUI : MonoBehaviour
 {
     public GameObject panel;
-    public TextMeshProUGUI text;
+    public Text text;
 
     #region Event
 
